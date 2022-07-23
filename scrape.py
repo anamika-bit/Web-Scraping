@@ -22,8 +22,16 @@ with open('Company.csv', 'w', encoding = 'utf8', newline = '') as f:
             Website = List.find('a', class_ = "website-link__item").get('href')
             Location = List.find('span', class_ = "locality").text.replace('\n', '')
             #Contact = List.find('a', class_ = "website-link__item").get('href')
-            Rating = List.find('span', class_ = "rating sg-rating__number").text.replace('\n', '')
-            ReviewCnt = List.find('a', class_ = "reviews-link sg-rating__reviews").text.replace('\n', '')
+            Rating = List.find('span', class_ = "rating sg-rating__number")
+            if(Rating is not None):
+                Rating = Rating.text.replace('/n','')
+            else:
+                Rating = "Nan"
+            ReviewCnt = List.find('a', class_ = "reviews-link sg-rating__reviews")
+            if(ReviewCnt is not None):
+                ReviewCnt = ReviewCnt.text.replace('/n','')
+            else:
+                ReviewCnt = "Nan"
             HourlyRate = List.find('div', class_ = "list-item custom_popover").text.replace('\n', '')
             MinProjectSize = List.find('div', class_ = "list-item block_tag custom_popover").text.replace('\n', '')
             EmployeeSize = List.find('div', class_ = "list-item block_tag custom_popover").text.replace('\n', '')
